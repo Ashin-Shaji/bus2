@@ -1,7 +1,11 @@
-﻿Pillow
+opencv-python
+google-generative-ai
+os
+uuid
 pandas
-google-generativeai
+ast
+streamlit
+Pillow
 langchain-core
 langchain-google-genai
-streamlit
-opencv-python
+
