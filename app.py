@@ -1,4 +1,4 @@
-import cv2, google.generativeai as gem, os, uuid, pandas as pd, ast, streamlit as st
+import google.generativeai as gem, os, uuid, pandas as pd, ast, streamlit as st #, cv2
 from PIL import Image
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
