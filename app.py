@@ -196,6 +196,19 @@ if st.button("Process Selected Images"):
                     continue
 
                 message = HumanMessage(
+                    # content=[
+                    #     {
+                    #         "type": "text",
+                    #         "text": """Carefully analyze the business card(s) and get the output in pure json format
+
+                    #         [{"Person name": "full name of the person if exists",
+                    #             "Company name": "get the full company name if exists",
+                    #             "Email": "get the complete mail if exists",
+                    #             "Contact number": "get every contact number if exists"}]
+                    #             your response shall not contain ' ```json ' and ' ``` ' """,
+                    #     },
+                    #     {"type": "image_url", "image_url": image_path}
+                    # ]
                     content=[
                         {
                             "type": "text",
@@ -205,9 +218,17 @@ if st.button("Process Selected Images"):
                                 "Company name": "get the full company name if exists",
                                 "Email": "get the complete mail if exists",
                                 "Contact number": "get every contact number if exists"}]
+                                
+                            if a card has multiple person name then the output be like:
+                            
+                            [{"Person name": "full name of the person if exists",
+                                "Person name 2": "full name of the person if exists",
+                                "Company name": "get the full company name if exists",
+                                "Email": "get the complete mail if exists",
+                                "Contact number": "get every contact number if exists"}]
                                 your response shall not contain ' ```json ' and ' ``` ' """,
                         },
-                        {"type": "image_url", "image_url": image_path}
+                        {"type": "image_url", "image_url": image_url2}
                     ]
                 )
 
