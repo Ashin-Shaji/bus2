@@ -228,7 +228,7 @@ if st.button("Process Selected Images"):
                                 "Contact number": "get every contact number if exists"}]
                                 your response shall not contain ' ```json ' and ' ``` ' """,
                         },
-                        {"type": "image_url", "image_url": image_url2}
+                        {"type": "image_url", "image_url": image_path}
                     ]
                 )
 
