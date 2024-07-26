@@ -189,7 +189,7 @@ if st.button("Process Selected Images"):
                     continue
 
                 image = Image.open(image_path)
-                vision = gem.GenerativeModel('gemini-1.5-flash-latest')
+                vision = gem.GenerativeModel('gemini-1.5-pro-latest')
                 res = vision.generate_content(["""You are only a business card image recognizer, you will tell clean 'YES' if it is it else clean 'NO' """, image])
                 if res.text == 'NO':
                     st.info(f"{os.path.basename(image_path)} is not a business card", icon='❗')
