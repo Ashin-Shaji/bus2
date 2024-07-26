@@ -213,7 +213,7 @@ if st.button("Process Selected Images"):
 
                 try:
                     response = llm.invoke([message])
-                    response = response.content.replace('null', 'null').replace('null', 'None')
+                    response = response.content.replace('null', 'None')#.replace('null', '')
                     extracted_data = ast.literal_eval(response)
 
                     rows = []
