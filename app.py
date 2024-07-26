@@ -243,7 +243,7 @@ if st.button("Process Selected Images"):
                     #     rows.append(row)
                     # all_rows.extend(rows)
                     
-                    for item in res:
+                    for item in extracted_data:
                         person_name = item.get("Person name", "")
                         person_name_2 = item.get("Person name 2", "")
                         row = {
