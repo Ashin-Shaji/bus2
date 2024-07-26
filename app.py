@@ -189,7 +189,7 @@ if st.button("Process Selected Images"):
                     continue
 
                 image = Image.open(image_path)
-                vision = gem.GenerativeModel('gemini-1.5-flash-latest')
+                vision = gem.GenerativeModel('gemini-1.5-pro-latest')
                 res = vision.generate_content(["""You are only a business card image recognizer, you will tell clean 'YES' if it is it else clean 'NO' """, image])
                 if res.text == 'NO':
                     st.info(f"{os.path.basename(image_path)} is not a business card", icon='❗')
@@ -238,8 +238,20 @@ if st.button("Process Selected Images"):
                     extracted_data = ast.literal_eval(response)
 
                     rows = []
-                    for item in extracted_data:
-                        row = {col: item.get(col, "") for col in columns}
+                    # for item in extracted_data:
+                    #     row = {col: item.get(col, "") for col in columns}
+                    #     rows.append(row)
+                    # all_rows.extend(rows)
+                    
+                    for item in res:
+                        person_name = item.get("Person name", "")
+                        person_name_2 = item.get("Person name 2", "")
+                        row = {
+                            "Person name": f"{person_name}, {person_name_2}",
+                            "Company name": item.get("Company name", ""),
+                            "Email": item.get("Email", ""),
+                            "Contact number": item.get("Contact number", ""),
+                        }
                         rows.append(row)
                     all_rows.extend(rows)
 
