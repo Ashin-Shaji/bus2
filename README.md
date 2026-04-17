@@ -68,6 +68,52 @@ for item in extracted_data:
         "Contact number": item.get("Contact number", ""),
     }
 ```
+## Logic Flowchart
+
+```mermaid
+graph TD
+    %% Entry Point
+    Start((Start)) --> Init[Initialize App & Folders<br/>'uploaded_images' & 'uploaded_cam_images']
+    Init --> InputMethod{Input Method?}
+
+    %% Input Logic
+    InputMethod -->|Camera| Camera[OpenCV Camera Capture<br/>SPACE to save / ESC to exit]
+    InputMethod -->|Upload| Upload[Streamlit File Uploader<br/>JPG, PNG, JPEG]
+    
+    Camera --> Gallery[Display Image Gallery]
+    Upload --> Gallery
+
+    %% Selection & Verification
+    Gallery --> Selection[User Selects Images for Processing]
+    Selection --> Verify{Is Business Card?}
+    
+    %% Gemini Processing
+    subgraph AI_Processing [Gemini AI Engine]
+    Verify -->|NO| Info[Skip Image]
+    Verify -->|YES| Vision[Gemini 1.5 Pro Vision<br/>Analyze Image Content]
+    Vision --> Extraction[Extract: Name, Company, Email, Contact]
+    Extraction --> JSON[Convert to JSON format]
+    end
+
+    %% Data Management
+    JSON --> Pandas[Create/Update DataFrame]
+    Pandas --> CSV[Append to 'business_cards.csv']
+    
+    %% UI Display
+    CSV --> UI_Options{User View Options}
+    UI_Options -->|View JSON| Expander[Show JSON Expanders]
+    UI_Options -->|View CSV| Editor[Streamlit Data Editor<br/>Verify & Edit Data]
+    
+    Editor --> FinalSave[Save Changes back to CSV]
+    FinalSave --> End((End))
+
+    %% Styling
+    style Start fill:#f9f,stroke:#333,stroke-width:2px
+    style End fill:#f9f,stroke:#333,stroke-width:2px
+    style AI_Processing fill:#e1f5fe,stroke:#01579b
+    style Vision fill:#28a745,color:#fff
+    style Verify fill:#fd7e14,color:#fff
+```
 
 ### Vision Prompts & Guardrails
 To maintain data integrity, the system uses a **Negative Constraint Prompt**:
