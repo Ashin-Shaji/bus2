@@ -3,7 +3,7 @@ from PIL import Image
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-os.environ["GOOGLE_API_KEY"] = 'AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU'
+os.environ["GOOGLE_API_KEY"] = 
 gem.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 # Configuration
